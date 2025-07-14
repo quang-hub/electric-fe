@@ -43,11 +43,11 @@ export default function LaundryPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-pink-100 p-4">
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-pink-100 p-4 sm:p-6">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
-          <div className="flex items-center gap-4 mb-6">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-6">
             <Button variant="outline" onClick={() => (window.location.href = "/")} className="flex items-center gap-2">
               <ArrowLeft className="h-4 w-4" />
               Quay lại
@@ -58,8 +58,8 @@ export default function LaundryPage() {
                 <Home className="h-6 w-6 text-white" />
               </div>
               <div>
-                <h1 className="text-3xl font-bold text-gray-900">Thống kê giặt đồ</h1>
-                <p className="text-gray-600">Theo dõi và quản lý hoạt động giặt đồ của các phòng</p>
+                <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Thống kê giặt đồ</h1>
+                <p className="text-sm sm:text-base text-gray-600">Theo dõi và quản lý hoạt động giặt đồ của các phòng</p>
               </div>
             </div>
           </div>

@@ -44,7 +44,7 @@ export function RoomList({ rooms, electricRecords }: RoomListProps) {
   }
 
   return (
-    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+    <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
       {rooms.map((room) => {
         const latestRecord = getLatestRecord(room.id)
         const usage = calculateUsage(latestRecord)
@@ -53,7 +53,7 @@ export function RoomList({ rooms, electricRecords }: RoomListProps) {
         return (
           <Card key={room.id} className="hover:shadow-lg transition-shadow">
             <CardHeader className="pb-3">
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between flex-wrap gap-2">
                 <CardTitle className="text-lg">{room.roomName}</CardTitle>
                 <Badge variant={latestRecord ? "default" : "secondary"}>
                   {latestRecord ? "Có dữ liệu" : "Chưa có dữ liệu"}
@@ -64,7 +64,7 @@ export function RoomList({ rooms, electricRecords }: RoomListProps) {
             <CardContent className="space-y-4">
               {latestRecord ? (
                 <>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="text-center p-3 bg-blue-50 rounded-lg">
                       <p className="text-sm text-gray-600">Số điện đầu</p>
                       <p className="text-xl font-bold text-blue-600">{latestRecord.startElectric}</p>
@@ -75,7 +75,7 @@ export function RoomList({ rooms, electricRecords }: RoomListProps) {
                     </div>
                   </div>
 
-                  <div className="flex items-center justify-between p-3 bg-orange-50 rounded-lg">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-3 bg-orange-50 rounded-lg gap-2">
                     <div className="flex items-center gap-2">
                       <TrendingUp className="h-4 w-4 text-orange-600" />
                       <span className="text-sm text-gray-600">Tiêu thụ</span>

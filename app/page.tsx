@@ -81,65 +81,58 @@ export default function Component() {
     )
   }
 
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
+ return (
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4 sm:p-6">
       <div className="max-w-7xl mx-auto">
         <div className="mb-8">
-          <div className="flex items-center gap-3 mb-4">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 mb-4">
             <div className="p-2 bg-blue-600 rounded-lg">
               <Zap className="h-6 w-6 text-white" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">Quản lý tiền điện</h1>
-              <p className="text-gray-600">Hệ thống tính toán và quản lý tiền điện phòng trọ</p>
+              <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Quản lý tiền điện</h1>
+              <p className="text-sm sm:text-base text-gray-600">Hệ thống tính toán và quản lý tiền điện phòng trọ</p>
             </div>
           </div>
 
-          <div className="flex items-center justify-between mb-6">
-            <div className="flex gap-4">
-              <Card className="flex-1">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 gap-4">
+            <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+              <Card className="flex-1 w-full">
                 <CardContent className="p-4">
                   <div className="flex items-center gap-3">
                     <Home className="h-5 w-5 text-blue-600" />
                     <div>
                       <p className="text-sm text-gray-600">Tổng số phòng</p>
-                      <p className="text-2xl font-bold">{rooms.length}</p>
+                      <p className="text-xl sm:text-2xl font-bold">{rooms.length}</p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
 
-              <Card className="flex-1">
+              <Card className="flex-1 w-full">
                 <CardContent className="p-4">
                   <div className="flex items-center gap-3">
                     <Calculator className="h-5 w-5 text-green-600" />
                     <div>
                       <p className="text-sm text-gray-600">Bản ghi điện</p>
-                      <p className="text-2xl font-bold">{electricRecords.length}</p>
+                      <p className="text-xl sm:text-2xl font-bold">{electricRecords.length}</p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
             </div>
 
-            <div className="flex gap-2">
+            <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
               <Button
                 onClick={() => (window.location.href = "/laundry")}
                 variant="outline"
-                className="bg-purple-50 hover:bg-purple-100 border-purple-200"
+                className="bg-purple-50 hover:bg-purple-100 border-purple-200 w-full sm:w-auto"
               >
                 <Shirt className="h-4 w-4 mr-2" />
                 Thống kê giặt
               </Button>
 
-              <Button onClick={() => {
-                const confirmView = window.confirm("Bạn có muốn xem chi tiết folder Google Drive không?")
-                if (confirmView) {
-                  window.open(`https://drive.google.com/drive/folders/1y4LxH1-JEvZ9szaZ9Uj4aWHHv4rSgc3r`, "_blank")
-                }
-                // Tiếp tục gọi API upload sau đó
-                handleUploadToGoogleDrive()
-              }} className="bg-green-600 hover:bg-green-700">
+              <Button onClick={handleUploadToGoogleDrive} className="bg-green-600 hover:bg-green-700 w-full sm:w-auto">
                 <Upload className="h-4 w-4 mr-2" />
                 Upload Google Drive
               </Button>
@@ -148,16 +141,16 @@ export default function Component() {
         </div>
 
         <Tabs defaultValue="rooms" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-3">
-            <TabsTrigger value="rooms" className="flex items-center gap-2">
+          <TabsList className="flex flex-wrap justify-between w-full p-1">
+            <TabsTrigger value="rooms" className="flex-1 min-w-[120px] flex items-center justify-center gap-2">
               <Home className="h-4 w-4" />
               Danh sách phòng
             </TabsTrigger>
-            <TabsTrigger value="input" className="flex items-center gap-2">
+            <TabsTrigger value="input" className="flex-1 min-w-[120px] flex items-center justify-center gap-2">
               <Zap className="h-4 w-4" />
               Nhập số điện
             </TabsTrigger>
-            <TabsTrigger value="calculate" className="flex items-center gap-2">
+            <TabsTrigger value="calculate" className="flex-1 min-w-[120px] flex items-center justify-center gap-2">
               <Calculator className="h-4 w-4" />
               Tính toán
             </TabsTrigger>

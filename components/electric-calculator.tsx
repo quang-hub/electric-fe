@@ -185,7 +185,7 @@ export function ElectricCalculator({ rooms, historicalElectricRecords }: Electri
             ) : (
               electrics.map((electric) => (
                 <Card key={electric.roomId} className="p-4 bg-gray-50">
-                  <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-center">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 items-center">
                     <div>
                       <Label>Phòng</Label>
                       <Input value={getRoomName(electric.roomId)} readOnly className="mt-1 bg-gray-100" />
@@ -198,8 +198,10 @@ export function ElectricCalculator({ rooms, historicalElectricRecords }: Electri
                       <Label>Số điện cuối</Label>
                       <Input type="number" value={electric.endElectric} readOnly className="mt-1 bg-gray-100" />
                     </div>
-                    <div className="flex items-center gap-2">
-                      <Badge variant="secondary">Sử dụng: {electric.endElectric - electric.startElectric} kWh</Badge>
+                    <div className="flex items-center gap-2 mt-2 sm:mt-0">
+                      <Badge variant="secondary" className="w-full justify-center">
+                        Sử dụng: {electric.endElectric - electric.startElectric} kWh
+                      </Badge>
                       {/* Removed "Xóa" button */}
                     </div>
                   </div>
@@ -253,11 +255,11 @@ export function ElectricCalculator({ rooms, historicalElectricRecords }: Electri
               <h3 className="text-lg font-semibold">Chi tiết từng phòng</h3>
               {result.electricDetails.map((detail) => (
                 <Card key={detail.roomId} className="p-4">
-                  <div className="flex items-center justify-between mb-3">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-3">
                     <h4 className="font-semibold">{detail.roomName}</h4>
-                    <Badge className="bg-green-600">{formatCurrency(detail.totalMoney)}</Badge>
+                    <Badge className="bg-green-600 mt-2 sm:mt-0">{formatCurrency(detail.totalMoney)}</Badge>
                   </div>
-                  <div className="grid grid-cols-3 gap-4 text-sm">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
                     <div>
                       <p className="text-gray-600">Điện giặt</p>
                       <p className="font-medium">{detail.elctricityUsedInLaundry.toFixed(1)} kWh</p>

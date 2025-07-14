@@ -105,16 +105,18 @@ export function LaundryStats({ rooms }: LaundryStatsProps) {
     <div className="space-y-6">
       <Card>
         <CardHeader>
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <div>
-              <CardTitle className="flex items-center gap-2">
+              <CardTitle className="flex items-center gap-2 text-xl sm:text-2xl">
                 <Shirt className="h-5 w-5 text-purple-600" />
                 Thống kê giặt đồ
               </CardTitle>
-              <CardDescription>Theo dõi số lần giặt của từng phòng theo tháng</CardDescription>
+              <CardDescription className="text-sm sm:text-base">
+                Theo dõi số lần giặt của từng phòng theo tháng
+              </CardDescription>
             </div>
             <Select value={selectedMonth} onValueChange={setSelectedMonth}>
-              <SelectTrigger className="w-40">
+              <SelectTrigger className="w-full sm:w-40">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -132,19 +134,19 @@ export function LaundryStats({ rooms }: LaundryStatsProps) {
             <Card className="p-4 bg-purple-50 border-purple-200">
               <div className="text-center">
                 <p className="text-sm text-gray-600">Tổng lần giặt</p>
-                <p className="text-2xl font-bold text-purple-600">{getTotalLaundry()}</p>
+                <p className="text-xl sm:text-2xl font-bold text-purple-600">{getTotalLaundry()}</p>
               </div>
             </Card>
             <Card className="p-4 bg-pink-50 border-pink-200">
               <div className="text-center">
                 <p className="text-sm text-gray-600">Phòng tham gia</p>
-                <p className="text-2xl font-bold text-pink-600">{safeRooms.length}</p>
+                <p className="text-xl sm:text-2xl font-bold text-pink-600">{safeRooms.length}</p>
               </div>
             </Card>
             <Card className="p-4 bg-indigo-50 border-indigo-200">
               <div className="text-center">
                 <p className="text-sm text-gray-600">Trung bình/phòng</p>
-                <p className="text-2xl font-bold text-indigo-600">
+                <p className="text-xl sm:text-2xl font-bold text-indigo-600">
                   {stats.length > 0 ? (getTotalLaundry() / stats.length).toFixed(1) : 0}
                 </p>
               </div>
@@ -163,14 +165,21 @@ export function LaundryStats({ rooms }: LaundryStatsProps) {
           {stats.map((stat) => (
             <Card key={stat.roomId} className="hover:shadow-lg transition-shadow">
               <CardHeader className="pb-3">
-                <div className="flex items-center justify-between">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
                   <CardTitle className="text-lg">{stat.roomName}</CardTitle>
-                  <div className="flex items-center gap-2">
-                    <Badge variant="secondary" className="flex items-center gap-1">
+                  <div className="flex items-center gap-2 w-full sm:w-auto">
+                    <Badge
+                      variant="secondary"
+                      className="flex items-center gap-1 flex-grow sm:flex-grow-0 justify-center"
+                    >
                       <TrendingUp className="h-3 w-3" />
                       {stat.count} lần
                     </Badge>
-                    <Button size="sm" onClick={() => addLaundryRecord(stat.roomId)} className="h-8">
+                    <Button
+                      size="sm"
+                      onClick={() => addLaundryRecord(stat.roomId)}
+                      className="h-8 flex-grow sm:flex-grow-0"
+                    >
                       <Plus className="h-3 w-3 mr-1" />
                       Thêm
                     </Button>
@@ -185,13 +194,13 @@ export function LaundryStats({ rooms }: LaundryStatsProps) {
                       {stat.detailTime.map((record) => (
                         <div
                           key={record.id}
-                          className="flex items-center justify-between p-2 bg-gray-50 rounded text-sm"
+                          className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-2 bg-gray-50 rounded text-sm"
                         >
                           <span className="flex items-center gap-2">
                             <Calendar className="h-3 w-3 text-gray-500" />
                             {formatDateTime(record.createdAt)}
                           </span>
-                          <Badge variant="outline" className="text-xs">
+                          <Badge variant="outline" className="text-xs mt-1 sm:mt-0">
                             #{record.id}
                           </Badge>
                         </div>
@@ -214,13 +223,20 @@ export function LaundryStats({ rooms }: LaundryStatsProps) {
             .map((room) => (
               <Card key={room.id} className="hover:shadow-lg transition-shadow opacity-75">
                 <CardHeader className="pb-3">
-                  <div className="flex items-center justify-between">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
                     <CardTitle className="text-lg">{room.roomName}</CardTitle>
-                    <div className="flex items-center gap-2">
-                      <Badge variant="secondary" className="flex items-center gap-1">
+                    <div className="flex items-center gap-2 w-full sm:w-auto">
+                      <Badge
+                        variant="secondary"
+                        className="flex items-center gap-1 flex-grow sm:flex-grow-0 justify-center"
+                      >
                         <TrendingUp className="h-3 w-3" />0 lần
                       </Badge>
-                      <Button size="sm" onClick={() => addLaundryRecord(room.id)} className="h-8">
+                      <Button
+                        size="sm"
+                        onClick={() => addLaundryRecord(room.id)}
+                        className="h-8 flex-grow sm:flex-grow-0"
+                      >
                         <Plus className="h-3 w-3 mr-1" />
                         Thêm
                       </Button>

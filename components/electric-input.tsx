@@ -242,12 +242,17 @@ export function ElectricInput({ rooms, onSave, historicalElectricRecords }: Elec
                       />
                     </div>
 
-                    <div className="flex items-center gap-2">
-                      <Badge variant="secondary">
+                    <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 mt-2 sm:mt-0">
+                      <Badge variant="secondary" className="w-full sm:w-auto justify-center">
                         <Clock className="h-3 w-3 mr-1" />
                         {formatDateTime(data.updatedAt)}
                       </Badge>
-                      <Button variant="outline" size="icon" onClick={() => removeElectricInput(index)}>
+                      <Button
+                        variant="outline"
+                        size="icon"
+                        onClick={() => removeElectricInput(index)}
+                        className="w-full sm:w-auto"
+                      >
                         <Trash2 className="h-4 w-4" />
                       </Button>
                     </div>
@@ -257,19 +262,19 @@ export function ElectricInput({ rooms, onSave, historicalElectricRecords }: Elec
             </div>
           )}
 
-          <div className="flex gap-2">
+          <div className="flex flex-col sm:flex-row gap-2">
             <Button
               variant="outline"
               onClick={addElectricInput}
               disabled={electricData.length >= rooms.length || !Array.isArray(rooms) || rooms.length === 0}
-              className="flex-1"
+              className="flex-1 w-full sm:w-auto"
             >
               <Plus className="h-4 w-4 mr-2" />
               Thêm phòng ({electricData.length}/{rooms.length})
             </Button>
 
             {electricData.length > 0 && (
-              <Button onClick={handleSave} disabled={loading} className="flex-1">
+              <Button onClick={handleSave} disabled={loading} className="flex-1 w-full sm:w-auto">
                 <Save className="h-4 w-4 mr-2" />
                 {loading ? "Đang lưu..." : "Lưu dữ liệu"}
               </Button>
@@ -286,9 +291,12 @@ export function ElectricInput({ rooms, onSave, historicalElectricRecords }: Elec
           <CardContent>
             <div className="space-y-2">
               {electricData.map((data, index) => (
-                <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                <div
+                  key={index}
+                  className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-3 bg-gray-50 rounded-lg"
+                >
                   <span className="font-medium">{getRoomName(data.roomId)}</span>
-                  <Badge variant="secondary">
+                  <Badge variant="secondary" className="mt-2 sm:mt-0">
                     {data.startElectric} kWh {"->"} {data.endElectric} kWh
                   </Badge>
                 </div>
