@@ -14,6 +14,7 @@ export async function apiRequest<T>(endpoint: string, options: RequestInit = {})
   const url = `${API_BASE_URL}${endpoint}`
 
   const config: RequestInit = {
+    credentials: "omit",
     headers: {
       "Content-Type": "application/json",
       ...options.headers,
